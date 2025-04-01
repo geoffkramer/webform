@@ -10,10 +10,10 @@
                 "request": "launch",
                 "mainClass": "org.testng.TestNG",
                 "args": ["testng.xml"],
-                "classPaths": [
+                // "classPaths": [
                     
-                    "webform/src/main/test/resources"
-                ]
+                //     "webform/src/main/test/resources"
+                // ]
             }
         ]
     }
