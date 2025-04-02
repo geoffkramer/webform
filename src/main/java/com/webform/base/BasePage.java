@@ -17,7 +17,7 @@ import org.testng.annotations.BeforeSuite;
 public class BasePage {
 
     protected static Properties prop;
-    protected WebDriver driver;
+    protected static WebDriver driver;
 
     @BeforeSuite
     public void loadConfig() throws IOException {
@@ -75,14 +75,19 @@ public class BasePage {
         }
     }
 
+    // Getter method for prop
+    public static Properties getProp() {
+        return prop;
+    }
+
     // Driver getter method
     public WebDriver getDriver() {
         return driver;
     }
 
-    //Driver setter method
+    // Driver setter method
     public void setDriver(WebDriver driver) {
-        this.driver = driver; 
+        this.driver = driver;
     }
 
     // static wait for pausing

@@ -10,6 +10,8 @@ import org.openqa.selenium.devtools.idealized.Javascript;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.webform.base.BasePage;
+
 public class ActionDriver {
 
     private WebDriver driver;
@@ -17,7 +19,8 @@ public class ActionDriver {
 
     public ActionDriver(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        int explicitWait = Integer.parseInt(BasePage.getProp().getProperty("explicitWait"));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(explicitWait));
     }
 
     // Click an element
@@ -34,8 +37,9 @@ public class ActionDriver {
     public void enterText(By by, String value) {
         try {
             waitForElementToBeVisible(by);
-            driver.findElement(by).clear();
-            driver.findElement(by).sendKeys(value);
+            WebElement element = driver.findElement(by);
+            element.clear();
+            element.sendKeys(value);
         } catch (Exception e) {
             System.out.println("Unable to enter text value into field" + e.getMessage());
         }
@@ -67,19 +71,13 @@ public class ActionDriver {
         }
     }
 
-    // Method to check if an element is displayed
+    // Simplified method to check if an element is displayed
     public boolean isDisplayed(By by) {
         try {
             waitForElementToBeVisible(by);
-            boolean isDisplayed = driver.findElement(by).isDisplayed();
-            if (isDisplayed) {
-                System.out.println("element is displayed");
-                return isDisplayed;
-            } else {
-                return isDisplayed;
-            }
+            return driver.findElement(by).isDisplayed();
         } catch (Exception e) {
-            System.out.println("cannot find element");
+            System.out.println("Element is not displayed: " + e.getMessage());
             return false;
         }
     }
@@ -100,7 +98,7 @@ public class ActionDriver {
         try {
             JavascriptExecutor js = (JavascriptExecutor) driver;
             WebElement element = driver.findElement(by);
-            js.executeScript("arguments[0],scrollIntoView(true)", element);
+            js.executeScript("arguments[0],scrollIntoView(true);", element);
         } catch (Exception e) {
             System.out.println("could not scroll to element " + e.getMessage());
         }
