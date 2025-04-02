@@ -75,6 +75,16 @@ public class BasePage {
         }
     }
 
+    // Driver getter method
+    public WebDriver getDriver() {
+        return driver;
+    }
+
+    //Driver setter method
+    public void setDriver(WebDriver driver) {
+        this.driver = driver; 
+    }
+
     // static wait for pausing
     public void staticWait(int seconds) {
         LockSupport.parkNanos(TimeUnit.SECONDS.toNanos(seconds));
