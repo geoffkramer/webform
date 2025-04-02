@@ -20,8 +20,8 @@ This readme file is designed to explain what is / should be happening, and what 
     - I want to add my details ... 
     - So I can ... 
 
-- I would want to implement more verbose reporting - ideally creating an allure report after tests have been run - displaying number of tests ran, and % passed and failed, with a breakdown of each test, the point of failure i.e. "can't find X object", and a screenshot where necessary. 
-The following exists in the debug console for now: 
+- Allure reports now added, however the below logging format is also present:
+
 ===============================================
 Default Suite
 Total tests run: 1, Passes: 1, Failures: 0, Skips: 0
@@ -30,5 +30,15 @@ Total tests run: 1, Passes: 1, Failures: 0, Skips: 0
 
 
 - TO RUN THE TESTS 
-    - Navigate to the project root dir and run 'mvn clean test' without the apostrophes. 
+    - Navigate to the project root dir and run 'mvn clean test' without the apostrophes.
+    - Ensure any tests you want to run have the @Test tag, this would be expanded on with @Feature, @Epic etc. based on the number of tests. 
+
+
+- ALLURE REPORTS
+    -  after running tests using mvn clean test
+    - in terminal, run "mvn allure:report" to generate the report 
+    - in terminal, run "mvn allure serve -p 8080 <path to target/allure-results>" this will launch a local server and display the test reports in an easy to read formate
+        - usually it would be "mvn allure:serve" but this is causing some issues, likely with busy default port or java version discrepencies
+    - Intention to add screenshots at the point of test failure
+
 
